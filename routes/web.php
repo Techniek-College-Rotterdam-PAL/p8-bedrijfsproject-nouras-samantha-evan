@@ -30,3 +30,4 @@ Route::get("player/create", function () {
 
     return view('player/create', compact("players"));   
 });
+
