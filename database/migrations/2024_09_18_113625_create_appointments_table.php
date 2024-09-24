@@ -23,3 +23,4 @@ class CreateAppointmentsTable extends Migration
         Schema::dropIfExists('appointments');
     }
 }
+//test
