@@ -25,7 +25,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|confirmed|min:8',
-            'phone_number' => 'nullable|required|string|max:15',
+            'phone_number' => 'nullable||string|max:15',
         ]);
 
         // Update user data

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer(column: 'phone_number');
+            $table->string('phone_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -47,4 +47,7 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
+
+
+    
 };
