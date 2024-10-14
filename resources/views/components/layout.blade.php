@@ -8,23 +8,27 @@
 </head>
 <body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
 
-    <!-- Navbar -->
-    <nav id="navbar" class="bg-gray-800 shadow-md text-white">
-        <div id="logonav" class="flex items-center p-4 max-w-screen-lg mx-auto">
-            <img src="{{ Vite::asset('resources/assets/cropped-logo UNEED-IT.png') }}" alt="Logo" class="h-12">
-            <div id="logoptions" class="flex-grow flex items-center justify-center space-x-6">
-                <ul class="flex space-x-6">
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('home') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Home</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('OverOns') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Over ons</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('service') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Service</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('zakelijk') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Zakelijk</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('Bezorgdiensten') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Bezorgdiensten</a> </li>
-                    <li class="text-gray-300 hover:text-gray-100"> <a href="{{ url('account') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Account</a> </li>
-                </ul>
-            </div>
+   <!-- Navbar -->
+<nav id="navbar" class="bg-gray-800 shadow-md text-white">
+    <div id="logonav" class="flex items-center p-4 max-w-screen-xl mx-auto">
+        <!-- Logo -->
+        <img src="{{ Vite::asset('resources/assets/cropped-logo UNEED-IT.png') }}" alt="Logo" class="h-12 mr-8">
+        
+        <!-- Navigation Links -->
+        <div id="logoptions" class="flex-grow flex items-center justify-center space-x-8">
+            <ul class="flex space-x-8">
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('home') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Home</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('OverOns') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Over ons</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('service') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Service</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('zakelijk') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Zakelijk</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('Bezorgdiensten') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Bezorgdiensten</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('account') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Account</a></li>
+                <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('Inloggen') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Inloggen</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Main Content -->
     <main class="flex-1 p-4">
