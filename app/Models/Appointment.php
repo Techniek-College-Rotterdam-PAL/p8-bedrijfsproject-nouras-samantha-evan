@@ -4,14 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Service extends Model
+class Appointment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'price'];
+    protected $fillable = [
+        'user_id',
+        'service_id',
+        'date',
+        'time',
+        'status',
+    ];
 
-    /**Get the appointments for the service.*/
-  public function appointments(){
-      return $this->hasMany(Appointment::class);}
+    /**
+     * Een afspraak behoort tot een gebruiker.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Een afspraak behoort tot een service.
+     */
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

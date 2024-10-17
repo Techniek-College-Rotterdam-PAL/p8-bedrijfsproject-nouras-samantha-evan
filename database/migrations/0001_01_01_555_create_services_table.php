@@ -9,11 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = 'InnoDB'; // Zorg ervoor dat de engine is ingesteld
+            $table->id(); // Dit maakt een unsigned big integer 'id' kolom
+            $table->string('name'); // Naam van de service
+            $table->timestamps(); // Timestamps
         });
     }
 
@@ -25,3 +27,4 @@ return new class extends Migration
         Schema::dropIfExists('services');
     }
 };
+
