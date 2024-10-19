@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laravel</title>
     @vite(['resources/css/app.css'])
+    @vite(['resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
 
@@ -91,23 +92,6 @@
            </div>
        </div>
    </footer>
-
-   <script>
-       function toggleDropdown() {
-           const dropdown = document.getElementById('dropdownMenu');
-           dropdown.classList.toggle('hidden');
-       }
-
-       // Optional: Close dropdown when clicking outside
-       window.onclick = function(event) {
-           if (!event.target.matches('.py-2.px-4')) {
-               const dropdown = document.getElementById('dropdownMenu');
-               if (!dropdown.classList.contains('hidden')) {
-                   dropdown.classList.add('hidden');
-               }
-           }
-       }
-   </script>
-
+   
 </body>
 </html>
