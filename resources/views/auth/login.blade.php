@@ -54,6 +54,13 @@
                     {{ __('Login') }}
                 </button>
             </div>
+
+             <!-- Link to the registration page below the login button -->
+             <div class="mt-4 text-center">
+                <a href="{{ route('register') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                    {{ __("Don't have an account? Register here") }}
+                </a>
+            </div>
         </form>
     </div>
 </div>

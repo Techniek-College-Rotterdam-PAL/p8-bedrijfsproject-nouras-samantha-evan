@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,24 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // Allow guests to access login and register, but authenticated users can log out
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout(); // Logout the user
+
+        $request->session()->invalidate(); // Invalidate the session
+
+        $request->session()->regenerateToken(); // Regenerate CSRF token
+
+        return redirect('/'); // Redirect to the home page after logout
     }
 }
