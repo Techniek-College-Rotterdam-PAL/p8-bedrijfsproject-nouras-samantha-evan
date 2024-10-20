@@ -3,10 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController; // Ensure you have this import
+use App\Http\Controllers\Auth\LoginController; 
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('account', function () {
+    return view('account');
 });
 
 // Make sure the view path is correct; use 'auth.login' without the leading slash
