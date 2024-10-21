@@ -13,13 +13,14 @@ Route::get('account', function () {
     return view('account');
 });
 
-// Make sure the view path is correct; use 'auth.login' without the leading slash
 Route::get('/Inloggen', function () {
     return view('auth.login');
 });
 
 // POST route for logout
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::post('/profile.edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');
 
 Auth::routes();
 

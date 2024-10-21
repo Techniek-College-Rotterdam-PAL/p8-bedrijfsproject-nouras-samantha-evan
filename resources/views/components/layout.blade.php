@@ -39,27 +39,39 @@
         <li class="text-gray-300 hover:text-white">
             <a href="{{ url('account') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Account</a>
         </li>
+        
 
-        <!-- User Dropdown -->
         @if(auth()->check())
         <li class="relative text-gray-300 hover:text-white">
             <button onclick="toggleDropdown()" class="py-2 px-4 hover:bg-gray-700 rounded transition">
                 {{ auth()->user()->name }} ▼
             </button>
-            <ul id="dropdownMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded shadow-lg">
-                <li class="py-1">
-                    <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 hover:bg-gray-700">Log uit</button>
-                </li>
-            </ul>
+        <ul id="dropdownMenu" class="hidden absolute right-0 mt-2 bg-gray-800 text-white rounded shadow-lg">
+            <!-- User Profile -->
+            <li class="py-1 px-4 border-b border-gray-700">
+                <p class="text-sm font-semibold">{{ auth()->user()->name }}</p>
+                <p class="text-sm">{{ auth()->user()->email }}</p>
+            </li>
+            <!-- Edit Profile -->
+            <li class="py-1">
+                <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Edit Profile</a>
+            </li>
+            <!-- Logout Button -->
+        <li class="py-1">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">
+                    Log uit!
+                </button>
+            </form>
         </li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-            @csrf
-        </form>
         @else
-        <li class="text-gray-300 hover:text-white">
-            <a href="{{ url('Inloggen') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Inloggen</a>
-        </li>
+            <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('Inloggen') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Inloggen</a></li>
         @endif
+        </ul>
+</li>
+
+
     </ul>
 </div>
 
