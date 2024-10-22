@@ -10,14 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-    {
-        Schema::create('services', function (Blueprint $table) {
-            $table->engine = 'InnoDB'; // Zorg ervoor dat de engine is ingesteld
-            $table->id(); // Dit maakt een unsigned big integer 'id' kolom
-            $table->string('name'); // Naam van de service
-            $table->timestamps(); // Timestamps
-        });
-    }
+{
+    Schema::create('services', function (Blueprint $table) {
+        $table->engine = 'InnoDB'; // Ensure the engine is InnoDB
+        $table->id(); // Creates an unsigned big integer 'id' column
+        $table->string('name'); // Service name
+        $table->timestamps(); // Timestamps
+    });
+}
 
     /**
      * Reverse the migrations.
