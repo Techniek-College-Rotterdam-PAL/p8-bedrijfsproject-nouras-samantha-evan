@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,4 +45,9 @@ Route::post('/laptop-repair', [RepairController::class, 'submitLaptopRepair'])->
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Admin routes
+    Route::post('/admin/register', [AdminController::class, 'register']);
+    Route::post('/admin/login', [AdminController::class, 'login']);
+    Route::put('/admin/update-profile', [AdminController::class, 'updateProfile']);
 });
