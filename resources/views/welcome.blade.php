@@ -1,4 +1,3 @@
-<x-layout>
+@extends('components.layout')
 
 
-</x-layout>
