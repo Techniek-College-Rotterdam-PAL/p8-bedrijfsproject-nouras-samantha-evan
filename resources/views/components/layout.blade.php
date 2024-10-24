@@ -47,12 +47,6 @@
                             class="py-2 px-4 hover:bg-gray-700 rounded transition">Laptop Repair</a>
                     </li>
 
-                    <li class="text-gray-300 hover:text-white">
-                        <a href="{{ url('account') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Account</a>
-                    </li>
-
-
                     @if(auth()->check())
                         <li class="relative text-gray-300 hover:text-white">
                             <button onclick="toggleDropdown()" class="py-2 px-4 hover:bg-gray-700 rounded transition">

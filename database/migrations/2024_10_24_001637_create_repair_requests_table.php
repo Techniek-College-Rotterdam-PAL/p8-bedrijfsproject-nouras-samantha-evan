@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRepairRequestsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::create('repair_requests', function (Blueprint $table) {
@@ -24,10 +22,6 @@ class CreateRepairRequestsTable extends Migration
             $table->timestamps(); // created_at and updated_at timestamps
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
         Schema::dropIfExists('repair_requests');

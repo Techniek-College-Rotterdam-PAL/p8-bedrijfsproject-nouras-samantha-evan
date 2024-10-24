@@ -9,11 +9,14 @@ class RepairRequest extends Model
 {
     use HasFactory;
 
-    protected $table = 'repair_requests'; // Table name
+    // Define the table associated with the model
+    protected $table = 'repair_requests';
 
-    protected $primaryKey = 'request_id'; // Specify the primary key
-
+    // Define the fillable properties for mass assignment
     protected $fillable = [
+        'name',
+        'phone',
+        'email',
         'user_id',
         'address_id',
         'service_type',
@@ -21,14 +24,19 @@ class RepairRequest extends Model
         'status',
     ];
 
-    // Relationships
+    /**
+     * Get the user that submitted the repair request.
+     */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the address associated with the repair request.
+     */
     public function address()
     {
-        return $this->belongsTo(Address::class, 'address_id');
+        return $this->belongsTo(Address::class);
     }
 }
