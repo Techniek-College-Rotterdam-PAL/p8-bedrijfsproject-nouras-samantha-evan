@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import { toggleDropdown } from './dropdown'; // Import the dropdown JS
+
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -37,3 +39,6 @@ app.component('example-component', ExampleComponent);
  */
 
 app.mount('#app');
+
+
+window.toggleDropdown = toggleDropdown;

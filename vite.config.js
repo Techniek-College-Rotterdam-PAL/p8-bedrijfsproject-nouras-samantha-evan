@@ -5,7 +5,11 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/sass/app.scss', 'resources/js/app.js'], // Adjust this to point to SCSS
+            input: [
+                'resources/sass/app.scss',
+                'resources/js/app.js',
+                'resources/css/app.css'
+            ],
             refresh: true,
         }),
         vue({
@@ -20,6 +24,16 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
+        },
+    },
+    build: {
+        manifest: true,  // Ensure the manifest is generated
+        outDir: 'public/build',  // Set the output directory
+        rollupOptions: {
+            input: {
+                main: 'resources/js/app.js',
+                style: 'resources/sass/app.scss',
+            },
         },
     },
 });
