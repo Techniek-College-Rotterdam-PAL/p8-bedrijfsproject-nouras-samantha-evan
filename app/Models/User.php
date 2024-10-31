@@ -11,6 +11,25 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function repairRequests()
+    {
+        return $this->hasMany(RepairRequest::class);
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->role_id = $user->role_id ?? 2; // default ??! 1 = USER
+        });
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *

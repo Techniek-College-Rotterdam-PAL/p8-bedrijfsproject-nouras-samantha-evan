@@ -14,29 +14,28 @@ class RepairRequest extends Model
 
     // Define the fillable properties for mass assignment
     protected $fillable = [
-        'name',
-        'phone',
-        'email',
         'user_id',
-        'address_id',
-        'service_type',
+        'model_id',
+        'name',
+        'email',
+        'phone',
         'description',
-        'status',
+        'created_at',
+        'updated_at',
     ];
 
-    /**
-     * Get the user that submitted the repair request.
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the address associated with the repair request.
-     */
-    public function address()
+    public function deviceModel()
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(DeviceModel::class);
+    }
+
+    public function repairTypes()
+    {
+        return $this->belongsToMany(RepairType::class, 'repair_request_repair_type');
     }
 }

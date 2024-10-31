@@ -11,11 +11,10 @@ class CreateRepairRequestsTable extends Migration
     {
         Schema::create('repair_requests', function (Blueprint $table) {
             $table->id(); // Primary Key
-            $table->string('name'); // Name of the person submitting the request
-            $table->string('phone'); // Phone number of the person submitting the request
-            $table->string('email')->nullable(); // Email of the person submitting the request, nullable
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade'); // Foreign Key referencing users, nullable
-            $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade'); // Foreign Key referencing addresses
+            $table->string('name'); 
+            $table->string('phone'); 
+            $table->string('email')->nullable(); 
             $table->string('service_type'); // e.g., telefoon, laptop
             $table->text('description'); // Description of the repair request
             $table->enum('status', ['ingediend', 'in behandeling', 'voltooid']); // Status of the request
