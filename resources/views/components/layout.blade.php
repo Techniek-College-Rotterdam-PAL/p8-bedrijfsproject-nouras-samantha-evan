@@ -38,13 +38,10 @@
                     <li class="text-gray-300 hover:text-white">
                         <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a>
                     </li>
+
                     <li class="text-gray-300 hover:text-white">
-                        <a href="{{ route('phone.repair') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Phone Repair</a>
-                    </li>
-                    <li class="text-gray-300 hover:text-white">
-                        <a href="{{ route('laptop.repair') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Laptop Repair</a>
+                        <a href="{{ route('repair.request') }}"
+                            class="py-2 px-4 hover:bg-gray-700 rounded transition">qugifajkhb</a>
                     </li>
 
                     @if(auth()->check())

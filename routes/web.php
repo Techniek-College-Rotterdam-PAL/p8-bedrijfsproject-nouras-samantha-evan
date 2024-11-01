@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RepairController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RepairRequestController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,15 +34,31 @@ Route::post('/profile.edit', [App\Http\Controllers\ProfileController::class, 'ed
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-// Form routes (now accessible to everyone)
-Route::get('/phone-repair', [RepairController::class, 'showPhoneRepairForm'])->name('phone.repair');
-Route::post('/phone-repair', [RepairController::class, 'submitPhoneRepair'])->name('phoneRepair.submit');
-
-Route::get('/laptop-repair', [RepairController::class, 'showLaptopRepairForm'])->name('laptop.repair');
-Route::post('/laptop-repair', [RepairController::class, 'submitLaptopRepair'])->name('laptopRepair.submit');
-
 // Authenticated routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+// Admin routes
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
+    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
+    Route::post('/admin/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
+});
+
+// Repair Request routes
+// Route to show the repair request form
+Route::get('/repair-request', [RepairRequestController::class, 'showForm'])->name('repair.request');
+
+// Route to handle the form submission
+Route::post('/repair-request', [RepairRequestController::class, 'submitRequest'])->name('repair.request.submit');
+
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
+    Route::post('/repair-requests/{id}/update-status', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.repairRequests.updateStatus');
+    Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
 });
