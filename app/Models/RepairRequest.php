@@ -14,14 +14,14 @@ class RepairRequest extends Model
 
     // Define the fillable properties for mass assignment
     protected $fillable = [
-        'user_id',
-        'model_id',
         'name',
-        'email',
         'phone',
+        'email',
+        'user_id',
+        'device_model_id',
+        'device_type_id',
         'description',
-        'created_at',
-        'updated_at',
+        'status',
     ];
 
     public function user()

@@ -16,7 +16,7 @@ Route::get('account', function () {
     return view('account');
 });
 
-Route::get('/Inloggen', function () {
+Route::get('/Inloggen', function () { 
     return view('auth.login');
 });
 
@@ -48,12 +48,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
 });
 
-// Repair Request routes
-// Route to show the repair request form
-Route::get('/repair-request', [RepairRequestController::class, 'showForm'])->name('repair.request');
 
-// Route to handle the form submission
+// Repair Request routes
+// 1. Route to show the repair request form
+// 2. Route to handle the form submission
+// 3. Route to successssss <3333
+
+Route::get('/repair-request', [RepairRequestController::class, 'showForm'])->name('repair.request');
 Route::post('/repair-request', [RepairRequestController::class, 'submitRequest'])->name('repair.request.submit');
+Route::get('/repair-request/success', [RepairRequestController::class, 'success'])->name('repair.request.success');
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
