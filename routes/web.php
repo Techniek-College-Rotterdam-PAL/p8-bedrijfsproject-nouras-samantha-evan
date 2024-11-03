@@ -48,7 +48,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
 });
 
-
 // Repair Request routes
 // 1. Route to show the repair request form
 // 2. Route to handle the form submission

@@ -43,7 +43,6 @@
                         <a href="{{ route('repair.request') }}"
                             class="py-2 px-4 hover:bg-gray-700 rounded transition">qugifajkhb</a>
                     </li>
-
                     @if(auth()->check())
                         <li class="relative text-gray-300 hover:text-white">
                             <button onclick="toggleDropdown()" class="py-2 px-4 hover:bg-gray-700 rounded transition">
@@ -56,11 +55,29 @@
                                     <p class="text-sm font-semibold">{{ auth()->user()->name }}</p>
                                     <p class="text-sm">{{ auth()->user()->email }}</p>
                                 </li>
+
                                 <!-- Edit Profile -->
                                 <li class="py-1">
                                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Edit
                                         Profile</a>
                                 </li>
+
+                                <!-- Admin Specific Links -->
+                                @if(auth()->user()->role->name === 'admin')
+                                    <li class="py-1">
+                                        <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Admin
+                                            Dashboard</a>
+                                    </li>
+                                    <li class="py-1">
+                                        <a href="{{ route('admin.repairRequests') }}"
+                                            class="block px-4 py-2 hover:bg-gray-700">Manage Repair Requests</a>
+                                    </li>
+                                    <li class="py-1">
+                                        <a href="{{ route('admin.manageUsers') }}"
+                                            class="block px-4 py-2 hover:bg-gray-700">Manage Users</a>
+                                    </li>
+                                @endif
+
                                 <!-- Logout Button -->
                                 <li class="py-1">
                                     <form method="POST" action="{{ route('logout') }}">
@@ -71,12 +88,17 @@
                                         </button>
                                     </form>
                                 </li>
+                            </ul>
+                        </li>
                     @else
-                        <li class="text-gray-300 hover:text-gray-100"><a href="{{ url('Inloggen') }}"
-                                class="py-2 px-4 hover:bg-gray-700 rounded transition">Inloggen</a></li>
+                        <li class="text-gray-300 hover:text-gray-100">
+                            <a href="{{ url('Inloggen') }}"
+                                class="py-2 px-4 hover:bg-gray-700 rounded transition">Inloggen</a>
+                        </li>
                     @endif
-                        </ul>
-                    </li>
+
+                </ul>
+                </li>
 
 
                 </ul>
