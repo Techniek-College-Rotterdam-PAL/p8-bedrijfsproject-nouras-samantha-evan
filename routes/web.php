@@ -21,8 +21,15 @@ Route::get('/Inloggen', function () {
     return view('auth.login');
 });
 
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
+
 // Home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 Auth::routes();
 
