@@ -13,7 +13,7 @@ class CreateRepairRequestsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade'); // Foreign Key referencing users, nullable
             $table->foreignId('device_model_id')->constrained('device_models')->onDelete('cascade'); // Foreign Key referencing device_models
             $table->foreignId('device_type_id')->constrained('device_types')->onDelete('cascade'); // Foreign Key referencing device_types
-            $table->string('name');
+            $table->string('name')->nullable(false);
             $table->string('phone');
             $table->string('email')->nullable();
             $table->text('description')->nullable(); // Description of the repair request, nullable
@@ -27,4 +27,3 @@ class CreateRepairRequestsTable extends Migration
         Schema::dropIfExists('repair_requests');
     }
 }
- 

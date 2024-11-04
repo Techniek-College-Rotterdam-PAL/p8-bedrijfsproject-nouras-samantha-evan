@@ -37,5 +37,5 @@ class RepairRequest extends Model
     public function repairTypes()
     {
         return $this->belongsToMany(RepairType::class, 'repair_request_repair_type');
-    }
+    }   
 }
