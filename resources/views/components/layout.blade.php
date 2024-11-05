@@ -31,9 +31,7 @@
                         <a href="{{ url('service') }}"
                             class="py-2 px-4 hover:bg-gray-700 rounded transition">Service</a>
                     </li>
-                    <li class="text-gray-300 hover:text-white">
-                        <a href="{{ url('zakelijk') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Zakelijk</a>
+                    
                     </li>
                     <li class="text-gray-300 hover:text-white">
                         <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a>
@@ -123,11 +121,11 @@
                 <img src="{{ Vite::asset('resources/assets/phone.png') }}" alt="Phone" class="h-8">
                 <p class="text-sm">+316 30 985 409 SERVICENUMMER</p>
                 <p class="text-sm">+3118 28 202 18 KANTOOR</p>
-                <p class="text-sm">BEREIKBAAR VAN 09:00-18:00</p>
+             
             </div>
             <div id="tijd" class="flex flex-col items-center space-y-2">
                 <img src="{{ Vite::asset('resources/assets/clock.png') }}" alt="Clock" class="h-8">
-                <p class="text-sm">MA T/M VRIJ, 09:00 - 23:00</p>
+                <p class="text-sm">MA T/M VRIJ, 10:00 - 17:30</p>
                 <p class="text-sm">TELEFONISCH BEREIKBAAR</p>
                 <p class="text-sm">VOOR ABONNEMENTHOUDERS</p>
             </div>

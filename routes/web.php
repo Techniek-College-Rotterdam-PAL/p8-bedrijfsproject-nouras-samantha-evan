@@ -21,6 +21,9 @@ Route::get('/Inloggen', function () {
     return view('auth.login');
 });
 
+Route::get('/OverOns', function () { 
+    return view('OverOns');
+});
 
 
 Route::get('/faq', function () {
