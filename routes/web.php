@@ -17,7 +17,7 @@ Route::get('account', function () {
     return view('account');
 });
 
-Route::get('/Inloggen', function () { 
+Route::get('/Inloggen', function () {
     return view('auth.login');
 });
 
@@ -54,12 +54,12 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware(['auth','admin'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
-    Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
-    Route::post('/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
-});
+// Route::middleware(['auth','admin'])->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+//     Route::get('/repairRequests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
+//     Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
+//     Route::post('/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
+// });
 
 // Repair Request routes
 // 1. Route to show the repair request form
@@ -73,7 +73,11 @@ Route::get('/repair-request/success', [RepairRequestController::class, 'success'
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
-    Route::post('/repair-requests/{id}/update-status', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.repairRequests.updateStatus');
+    Route::get('/repairRequests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
     Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
+    Route::put('/users/{id}/update-role', [AdminController::class, 'updateUserRole'])->name('admin.updateUserRole');
+    // Add this route for updating the repair request status
+    Route::put('/repairRequests/{id}/update-status', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRepairRequestStatus');
 });
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RepairRequest;
 use App\Models\User;
+use App\Models\Role;
 
 class AdminController extends Controller
 {
@@ -15,9 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        // If you want to include all repair requests with related data on the dashboard
         $repairRequests = RepairRequest::with('user', 'deviceModel', 'repairTypes')->get();
-
         return view('admin.dashboard', compact('repairRequests'));
     }
 
@@ -28,14 +27,7 @@ class AdminController extends Controller
      */
     public function viewRepairRequests()
     {
-        // Eager-load related data to optimize performance
         $repairRequests = RepairRequest::with('user', 'deviceModel', 'repairTypes')->get();
-
-        // Debugging: Check if repair requests have names
-        // foreach ($repairRequests as $request) {
-        //     dd($request->name); // This will output the name of each request
-        // }
-
         return view('admin.repairRequests', compact('repairRequests'));
     }
 
@@ -60,14 +52,42 @@ class AdminController extends Controller
     }
 
     /**
-     * Manage all users (e.g., view or delete users).
+     * Manage all users.
      *
      * @return \Illuminate\View\View
      */
-    public function manageUsers()
+    public function manageUsers(Request $request)
     {
         $users = User::all();
+        $query = User::query();
 
-        return view('admin.manageUsers', compact('users'));
+        if ($request->filled('email')) {
+            $query->where('email', 'like', '%' . $request->email . '%');
+        }
+
+        $users = $query->get();
+        $roles = Role::all(); // Fetch roles to pass to the view
+
+        return view('admin.manageUsers', compact('users', 'roles'));
+    }
+
+    /**
+     * Update user role.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateUserRole(Request $request, $id)
+    {
+        $request->validate([
+            'role_id' => 'required|exists:roles,id',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->role_id = $request->role_id;
+        $user->save();
+
+        return redirect()->route('admin.manageUsers')->with('success', 'User role updated successfully.');
     }
 }
