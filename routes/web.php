@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RepairRequestController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,8 +23,15 @@ Route::get('/Inloggen', function () {
 
 
 
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
+
 // Home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 Auth::routes();
 
@@ -43,11 +51,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
-    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
-    Route::post('/admin/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
+Route::middleware(['auth','admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/repair-requests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
+    Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
+    Route::post('/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
 });
 
 // Repair Request routes

@@ -7,6 +7,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import { toggleDropdown } from './dropdown'; // Import the dropdown JS
+import './accordion.js';
 
 
 /**

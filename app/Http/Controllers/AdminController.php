@@ -31,6 +31,11 @@ class AdminController extends Controller
         // Eager-load related data to optimize performance
         $repairRequests = RepairRequest::with('user', 'deviceModel', 'repairTypes')->get();
 
+        // Debugging: Check if repair requests have names
+        // foreach ($repairRequests as $request) {
+        //     dd($request->name); // This will output the name of each request
+        // }
+
         return view('admin.repairRequests', compact('repairRequests'));
     }
 
