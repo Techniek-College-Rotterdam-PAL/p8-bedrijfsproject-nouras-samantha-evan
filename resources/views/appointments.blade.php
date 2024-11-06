@@ -1,21 +1,36 @@
 @extends('components.layout')
 
 @section('content')
-<body>
-    <h1>Book Your Appointment</h1>
+<body class="bg-gray-100 py-8">
 
-    <form id="appointmentForm">
-        @csrf
-        <label for="date">Appointment Date:</label>
-        <input type="date" name="date" id="date" required>
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Book Your Appointment</h1>
 
-        <label for="time">Appointment Time:</label>
-        <input type="time" name="time" id="time" required>
+        <form id="appointmentForm" class="space-y-4">
+            @csrf
 
-        <button type="submit">Book Appointment</button>
-    </form>
+            <div class="flex flex-col">
+                <label for="date" class="font-medium text-gray-700">Appointment Date:</label>
+                <input type="date" name="date" id="date" class="border border-gray-300 rounded-md px-4 py-2" required>
+            </div>
 
-    <div id="message" style="color: red; display: none;">
-        You must be logged in to book an appointment.
+            <div class="flex flex-col">
+                <label for="time" class="font-medium text-gray-700">Appointment Time:</label>
+                <select name="time" id="time" class="border border-gray-300 rounded-md px-4 py-2" required>
+                    <option value="" disabled selected>Select time</option>
+                    <!-- Time options will be populated here by JavaScript -->
+                </select>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+                Book Appointment
+            </button>
+        </form>
+
+        <div id="message" class="mt-4 text-red-500 text-center" style="display: none;">
+            You must be logged in to book an appointment.
+        </div>
     </div>
+
+</body>
 @endsection

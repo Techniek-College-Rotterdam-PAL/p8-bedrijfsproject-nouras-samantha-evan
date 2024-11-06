@@ -35,32 +35,55 @@ class AppointmentController extends Controller
      * Book an appointment.
      */
     public function book(Request $request)
-    {
+{
+    try {
+        // Validate the request
         $request->validate([
             'date' => 'required|date|after_or_equal:today',
             'time' => 'required|date_format:H:i',
         ]);
-
-        if (!Auth::check()) {
-            return response()->json(['message' => 'You must be logged in to book an appointment'], 401);
-        }
-
-        // Check if the time slot is available
-        $exists = Appointment::where('date', $request->date)
-                             ->where('time', $request->time)
-                             ->exists();
-
-        if ($exists) {
-            return response()->json(['message' => 'This slot is already taken'], 409);
-        }
-
-        // Book the appointment
-        $appointment = Appointment::create([
-            'user_id' => Auth::id(),
-            'date' => $request->date,
-            'time' => $request->time,
-        ]);
-
-        return response()->json(['appointment' => $appointment, 'message' => 'Appointment booked successfully'], 201);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        // Return validation errors as JSON
+        return response()->json(['message' => $e->validator->errors()->first()], 400);
     }
+
+    // Check if the date is a weekday (Monday to Friday)
+    $date = \Carbon\Carbon::parse($request->date);
+    if ($date->isWeekend()) {
+        return response()->json(['message' => 'Appointments can only be booked from Monday to Friday.'], 400);
+    }
+
+    // Check if the time is between 10:00 and 17:00
+    if ($request->time < '10:00' || $request->time > '17:00') {
+        return response()->json(['message' => 'Appointments must be between 10:00 AM and 5:00 PM.'], 400);
+    }
+
+    // Check if the time slot is available, ensuring there is a 30-minute gap
+    $existingAppointment = Appointment::where('date', $request->date)
+                                      ->whereBetween('time', [
+                                          \Carbon\Carbon::parse($request->time)->subMinutes(30)->format('H:i'),
+                                          \Carbon\Carbon::parse($request->time)->addMinutes(30)->format('H:i')
+                                      ])
+                                      ->exists();
+
+    if ($existingAppointment) {
+        return response()->json(['message' => 'This time is already taken. Please select a different time.'], 409);
+    }
+
+    // Check if the user is logged in
+    if (!Auth::check()) {
+        return response()->json(['message' => 'You must be logged in to book an appointment'], 401);
+    }
+
+    // Book the appointment
+    $appointment = Appointment::create([
+        'user_id' => Auth::id(),
+        'date' => $request->date,
+        'time' => $request->time,
+    ]);
+
+    return response()->json(['appointment' => $appointment, 'message' => 'Appointment booked successfully'], 201);
+}
+
+
 }
