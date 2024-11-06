@@ -63,7 +63,7 @@
                                 </li>
 
                                 <!-- Admin Specific Links -->
-                                @if(auth()->user()->role->name === 'admin')
+                                @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
                                     <li class="py-1">
                                         <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Admin
                                             Dashboard</a>
@@ -76,6 +76,10 @@
                                         <a href="{{ route('admin.manageUsers') }}"
                                             class="block px-4 py-2 hover:bg-gray-700">Manage Users</a>
                                     </li>
+                                    <li class="py-1">
+                                        <a href="{{ route('admin.createDeviceModel') }}"
+                                            class="block px-4 py-2 hover:bg-gray-700">Create Device Model</a>
+                                    </li> <!-- New Link -->
                                 @endif
 
                                 <!-- Logout Button -->
