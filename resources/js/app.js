@@ -3,6 +3,7 @@ import { createApp } from 'vue';
 import { toggleDropdown } from './dropdown'; // Import the dropdown JS
 import './accordion.js'; // Import other JS files
 import './alert.js'; // Import the alert functionality
+import './appointments.js'; // Import the alert functionality
 
 const app = createApp({});
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RepairRequestController;
+use App\Http\Controllers\AppointmentController;
+
 
 
 Route::get('/', function () {
@@ -51,6 +53,13 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+// appointment routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::post('/appointments/check', [AppointmentController::class, 'checkAvailability'])->name('appointments.check');
+    Route::post('/appointments/book', [AppointmentController::class, 'book'])->name('appointments.book');
 });
 
 // Admin routes
