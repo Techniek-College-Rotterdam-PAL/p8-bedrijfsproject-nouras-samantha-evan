@@ -10,7 +10,7 @@ use App\Http\Controllers\RepairRequestController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('account', function () {
@@ -20,6 +20,11 @@ Route::get('account', function () {
 Route::get('/Inloggen', function () {
     return view('auth.login');
 });
+
+Route::get('/OverOns', function () { 
+    return view('OverOns');
+});
+
 
 Route::get('/faq', function () {
     return view('faq');
