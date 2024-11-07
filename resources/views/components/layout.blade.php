@@ -7,6 +7,8 @@
     <title>Laravel</title>
     @vite(['resources/css/app.css'])
     @vite(['resources/js/app.js'])
+    
+
 </head>
 
 <body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
