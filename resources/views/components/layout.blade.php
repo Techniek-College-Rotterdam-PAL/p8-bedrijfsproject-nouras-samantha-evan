@@ -31,7 +31,7 @@
                         <a href="{{ url('service') }}"
                             class="py-2 px-4 hover:bg-gray-700 rounded transition">Service</a>
                     </li>
-                    
+
                     </li>
                     <li class="text-gray-300 hover:text-white">
                         <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a>
@@ -53,33 +53,18 @@
                                     <p class="text-sm font-semibold">{{ auth()->user()->name }}</p>
                                     <p class="text-sm">{{ auth()->user()->email }}</p>
                                 </li>
-
-                                <!-- Edit Profile -->
-                                <li class="py-1">
-                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Edit
-                                        Profile</a>
-                                </li>
-
                                 <!-- Admin Specific Links -->
                                 @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
                                     <li class="py-1">
                                         <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Admin
                                             Dashboard</a>
                                     </li>
-                                    <li class="py-1">
-                                        <a href="{{ route('admin.repairRequests') }}"
-                                            class="block px-4 py-2 hover:bg-gray-700">Manage Repair Requests</a>
-                                    </li>
-                                    <li class="py-1">
-                                        <a href="{{ route('admin.manageUsers') }}"
-                                            class="block px-4 py-2 hover:bg-gray-700">Manage Users</a>
-                                    </li>
-                                    <li class="py-1">
-                                        <a href="{{ route('admin.createDeviceModel') }}"
-                                            class="block px-4 py-2 hover:bg-gray-700">Create Device Model</a>
-                                    </li> <!-- New Link -->
                                 @endif
-
+                                <!-- Edit Profile -->
+                                <li class="py-1">
+                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Edit
+                                        Profile</a>
+                                </li>
                                 <!-- Logout Button -->
                                 <li class="py-1">
                                     <form method="POST" action="{{ route('logout') }}">
@@ -125,7 +110,7 @@
                 <img src="{{ Vite::asset('resources/assets/phone.png') }}" alt="Phone" class="h-8">
                 <p class="text-sm">+316 30 985 409 SERVICENUMMER</p>
                 <p class="text-sm">+3118 28 202 18 KANTOOR</p>
-             
+
             </div>
             <div id="tijd" class="flex flex-col items-center space-y-2">
                 <img src="{{ Vite::asset('resources/assets/clock.png') }}" alt="Clock" class="h-8">
