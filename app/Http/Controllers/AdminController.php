@@ -26,11 +26,12 @@ class AdminController extends Controller
         $deviceModelsCount = DeviceModel::count();
 
         // Get recent repair requests
-        $recentRepairRequests = RepairRequest::with('user', 'deviceModel')
+        $recentRepairRequests = RepairRequest::with('user', 'DeviceModel')
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
 
+            
         return view('admin.dashboard', compact(
             'repairRequestsCount',
             'usersCount',
@@ -150,29 +151,20 @@ class AdminController extends Controller
     }
 
     // --------------------------- Device Model Methods ---------------------------
-
-    /**
-     * Show the form for creating a new device model.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function createDeviceModel()
+    public function viewDeviceModels()
     {
-        // Fetch device types for the dropdown
+        // Fetch all device models along with their device types for listing
+        $deviceModels = DeviceModel::with(  'deviceType')->get();
+
+        // Fetch all device types for the dropdown in the create form
         $deviceTypes = DeviceType::all();
 
-        return view('admin.createDeviceModel', compact('deviceTypes'));
+        return view('admin.deviceModels', compact('deviceModels', 'deviceTypes'));
     }
 
-    /**
-     * Store a newly created device model in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function storeDeviceModel(Request $request)
     {
-        // Validate the form data
+        // Validate the input data
         $request->validate([
             'name' => 'required|string|max:255',
             'type_id' => 'required|exists:device_types,id',
@@ -184,21 +176,15 @@ class AdminController extends Controller
             'type_id' => $request->type_id,
         ]);
 
-        return redirect()->route('admin.createDeviceModel')->with('success', 'Device Model created successfully!');
+        return redirect()->route('admin.deviceModels')->with('success', 'Device Model created successfully!');
     }
 
-    /**
-     * Delete a device model.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function deleteDeviceModel($id)
     {
-        // Find and delete the device model
+        // Find and delete the specified device model
         $deviceModel = DeviceModel::findOrFail($id);
         $deviceModel->delete();
 
-        return redirect()->route('admin.viewDeviceModels')->with('success', 'Device model deleted successfully.');
+        return redirect()->route('admin.deviceModels')->with('success', 'Device model deleted successfully.');
     }
 }

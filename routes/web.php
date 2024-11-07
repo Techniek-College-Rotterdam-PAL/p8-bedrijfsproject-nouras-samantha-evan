@@ -59,20 +59,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/repairRequests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
     Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
 
-    // Create Methods
-    Route::get('/device-models/create', [AdminController::class, 'createDeviceModel'])->name('admin.createDeviceModel');
-    Route::post('/device-models', [AdminController::class, 'storeDeviceModel'])->name('admin.storeDeviceModel');
+    // Device Model Management using a single Blade view
+    Route::get('/deviceModels', [AdminController::class, 'viewDeviceModels'])->name('admin.deviceModels'); // Main view for all device models
+    Route::post('/deviceModels', [AdminController::class, 'storeDeviceModel'])->name('admin.storeDeviceModel'); // Store device model
+    Route::delete('/deviceModels/{id}', [AdminController::class, 'deleteDeviceModel'])->name('admin.deleteDeviceModel'); // Delete device model
 
-    // Update Methods
+    // Update Methods for Users and Repair Requests
     Route::put('/users/{id}/update-role', [AdminController::class, 'updateUserRole'])->name('admin.updateUserRole');
     Route::put('/repairRequests/{id}/update-status', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRepairRequestStatus');
 
-    // Delete Methods
-    Route::delete('users/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
-    Route::delete('device-models/{id}', [AdminController::class, 'deleteDeviceModel'])->name('admin.deleteDeviceModel');
-    Route::delete('repair-requests/{id}', [AdminController::class, 'deleteRepairRequest'])->name('admin.deleteRepairRequest');
-
+    // Delete Methods for Users and Repair Requests
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+    Route::delete('/repair-requests/{id}', [AdminController::class, 'deleteRepairRequest'])->name('admin.deleteRepairRequest');
 });
+
 
 // Repair Request routes
 // 1. Route to show the repair request form

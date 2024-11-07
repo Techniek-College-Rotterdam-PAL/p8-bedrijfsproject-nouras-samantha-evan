@@ -47,7 +47,7 @@
 
         <!-- Quick Actions -->
         <div class="flex space-x-4 mt-8">
-            <a href="{{ route('admin.createDeviceModel') }}" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 transition">Add Device Model</a>
+            <a href="{{ route('admin.deviceModels') }}" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 transition">Add Device Model</a>
             <a href="{{ route('admin.manageUsers') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Manage Users</a>
             <a href="{{ route('admin.repairRequests') }}" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">View All Repair Requests</a>
         </div>
