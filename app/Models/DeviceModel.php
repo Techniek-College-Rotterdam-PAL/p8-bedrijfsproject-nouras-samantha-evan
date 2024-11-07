@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DeviceModel extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',        // Add 'name' here
+        'type_id',     // Add other relevant fields you want to allow for mass assignment
+    ];
 
     public function deviceType()
     {

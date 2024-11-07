@@ -31,6 +31,7 @@ class ProfileController extends Controller
         // Update user data
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
 
         // Update password only if a new one is provided
         if ($request->password) {
