@@ -16,13 +16,19 @@
 
         <div class="max-w-screen-xl mx-auto p-4 mt-8 bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center">
             <div class="flex-1 p-4">
-                <h1 class="text-2xl font-bold mb-4">About Us</h1>
-                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, sed. Deleniti, laborum! Omnis at expedita numquam vero quibusdam quam dignissimos! Quasi doloribus a deserunt necessitatibus eos? Dicta accusantium inventore dolorum?</p>
+                <h1 class="text-2xl font-bold mb-4">Over ons</h1>
+                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, sed. Deleniti, laborum! Omnis at expedita numquam vero quibusdam quam dignissimos! Quasi doloribus a deserunt necessitatibus eos? Dicta accusantium inventore dolorum? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, sed. Deleniti, laborum! Omnis at expedita numquam vero quibusdam quam dignissimos! Quasi doloribus a deserunt necessitatibus eos? Dicta accusantium inventore dolorum?</p>
             </div>
             <div class="flex justify-center items-center p-4">
                 <img src="{{ Vite::asset('resources/assets/owner-image.jpg') }}" alt="Owner of the Website" class="w-48 h-auto rounded-lg shadow-lg">
             </div>
         </div>
+        <div class="max-w-screen-xl mx-auto p-4 mt-8 bg-white shadow-md rounded-lg flex flex-col md:flex-row items-center">
+        <div class="flex-1 p-4">
+                <h1 class="text-1xl font-bold mb-1">Bezorgdiensten</h1>
+                <p class="text-gray-700">Producten worden opgehaald en geleverd door UPS, DHL, HOMERR. </p>
+            </div>
+            </div>
     </body>
 
     </html>
