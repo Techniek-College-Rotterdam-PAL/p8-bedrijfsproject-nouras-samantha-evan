@@ -41,7 +41,7 @@
 
                     <li class="text-gray-300 hover:text-white">
                         <a href="{{ route('repair.request') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">qugifajkhb</a>
+                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Repairs</a>
                     </li>
                     @if(auth()->check())
                         <li class="relative text-gray-300 hover:text-white">
