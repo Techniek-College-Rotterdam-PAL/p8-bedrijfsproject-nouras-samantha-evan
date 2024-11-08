@@ -107,7 +107,17 @@
                                     <option value="5">5</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2">Verstuur Review</button>
+                            <button type="submit" class="btn btn-primary mt-2" style="
+                                background-color: #007bff;
+                                border: none;
+                                color: white;
+                                padding: 8px 18px;
+                                font-size: 16px;
+                                font-weight: bold;
+                                border-radius: 1px;
+                                cursor: pointer;
+                            ">Verstuur Review</button>
+
                         </form>
 
                         <h4 class="mt-4">Alle reviews</h4>
@@ -119,7 +129,16 @@
                                     <form action="{{ route('reviews.destroy', $review) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Verwijder</button>
+                                        <button type="submit" class="btn btn-primary mt-2" style="
+                                            background-color: #ff0000;
+                                            border: none;
+                                            color: white;
+                                            padding: 8px 18px;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                            border-radius: 1px;
+                                            cursor: pointer; 
+                                        ">verwijder</button>
                                     </form>
                                 @endif
                             </div>
