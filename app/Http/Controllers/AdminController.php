@@ -93,26 +93,27 @@ class AdminController extends Controller
 
     public function repairRequests(Request $request)
     {
-        $query = RepairRequest::query();
+        // Initialize query
+        $query = RepairRequest::with('deviceModel');
 
-        // Filter by name if provided
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        }
-
-        // Filter by ID if provided
+        // Check if 'id' is provided, and search for an exact match
         if ($request->filled('id')) {
             $query->where('id', $request->id);
         }
 
-        // Filter by status if provided
+        // Check if 'name' is provided, and search for an exact match
+        if ($request->filled('name')) {
+            $query->where('name', $request->name);
+        }
+
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        $repairRequests = $query->with('deviceModel')->get();
+        // Fetch the filtered results
+        $repairRequests = $query->get();
 
-        return view('admin.repair_requests', compact('repairRequests'));
+        return view('admin.repairRequests', compact('repairRequests'));
     }
 
     // --------------------------- User Management Methods ---------------------------

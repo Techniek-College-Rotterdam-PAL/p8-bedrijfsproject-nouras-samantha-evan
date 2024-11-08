@@ -79,6 +79,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Delete Methods for Users and Repair Requests
     Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
     Route::delete('/repair-requests/{id}', [AdminController::class, 'deleteRepairRequest'])->name('admin.deleteRepairRequest');
+
+    // Search route 
+    Route::get('/admin/repair-requests', [AdminController::class, 'repairRequests'])->name('admin.repairRequests');
 });
 
 
