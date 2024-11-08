@@ -31,16 +31,16 @@
                             ons</a>
                     </li>
                     <li class="text-gray-300 hover:text-white">
-                        <a href="{{ route('appointments.index') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Appointments</a>
+                        <a href="{{ route('appointments.index') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Afspraak</a>
                     </li>
                     </li>
                     <li class="text-gray-300 hover:text-white">
-                        <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a>
+                        <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">FAQ</a>
                     </li>
 
                     <li class="text-gray-300 hover:text-white">
                         <a href="{{ route('repair.request') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Repairs</a>
+                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Repareren</a>
                     </li>
                     @if(auth()->check())
                         <li class="relative text-gray-300 hover:text-white">
@@ -63,8 +63,7 @@
                                 @endif
                                 <!-- Edit Profile -->
                                 <li class="py-1">
-                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Edit
-                                        Profile</a>
+                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-700">Profiel aanpassen</a>
                                 </li>
                                 <!-- Logout Button -->
                                 <li class="py-1">

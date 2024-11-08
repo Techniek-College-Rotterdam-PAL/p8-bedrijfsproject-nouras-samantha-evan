@@ -10,25 +10,25 @@
             @csrf
 
             <div class="flex flex-col">
-                <label for="date" class="font-medium text-gray-700">Appointment Date:</label>
+                <label for="date" class="font-medium text-gray-700">Afspraak datum:</label>
                 <input type="date" name="date" id="date" class="border border-gray-300 rounded-md px-4 py-2" required>
             </div>
 
             <div class="flex flex-col">
-                <label for="time" class="font-medium text-gray-700">Appointment Time:</label>
+                <label for="time" class="font-medium text-gray-700">Afspraak tijd:</label>
                 <select name="time" id="time" class="border border-gray-300 rounded-md px-4 py-2" required>
-                    <option value="" disabled selected>Select time</option>
+                    <option value="" disabled selected>Selecteer tijd</option>
                     <!-- Time options will be populated here by JavaScript -->
                 </select>
             </div>
 
             <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-                Book Appointment
+                Maak een afspraak
             </button>
         </form>
 
         <div id="message" class="mt-4 text-red-500 text-center" style="display: none;">
-            You must be logged in to book an appointment.
+            Je moet ingelogd zijn om een afspraak te maken.
         </div>
     </div>
 

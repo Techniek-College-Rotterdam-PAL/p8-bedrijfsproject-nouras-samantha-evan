@@ -13,7 +13,7 @@
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-6 bg-white rounded shadow-md">
-        <h1 class="text-2xl font-bold mb-4">Manage Users</h1>
+        <h1 class="text-2xl font-bold mb-4">Beheer gebruikers</h1>
 
         @if (session('success'))
             <div class="bg-green-500 text-white p-4 rounded mb-4">{{ session('success') }}</div>
@@ -21,7 +21,7 @@
 
         <form method="GET" action="{{ route('admin.manageUsers') }}" class="mb-4">
             <input type="text" name="email" placeholder="Search by email" value="{{ request('email') }}" class="border border-gray-300 rounded p-2 mr-2">
-            <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Search</button>
+            <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Zoeken</button>
         </form>
 
         <div class="overflow-x-auto">
@@ -29,10 +29,10 @@
                 <thead>
                     <tr class="bg-gray-200">
                         <th class="py-2 px-4 border-b border-gray-300 text-left">ID</th>
-                        <th class="py-2 px-4 border-b border-gray-300 text-left">Name</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Naam</th>
                         <th class="py-2 px-4 border-b border-gray-300 text-left">Email</th>
                         <th class="py-2 px-4 border-b border-gray-300 text-left">Role</th>
-                        <th class="py-2 px-4 border-b border-gray-300 text-left">Actions</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Acties</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,10 +57,10 @@
                             </td>
                             <td class="py-2 px-4 border-b border-gray-300">
                                 <!-- Additional action buttons can be added here -->
-                                <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Weet jij zeker dat je deze gebruiker wilt verwijderen?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="ml-2 bg-red-500 text-white rounded px-3 py-1">Delete</button>
+                                    <button type="submit" class="ml-2 bg-red-500 text-white rounded px-3 py-1">Verwijder</button>
                                 </form>
                             </td>
                         </tr>

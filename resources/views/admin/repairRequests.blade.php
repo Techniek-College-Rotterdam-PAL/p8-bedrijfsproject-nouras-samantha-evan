@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container mx-auto p-6 bg-white rounded shadow-md">
-    <h1 class="text-2xl font-bold mb-4">Repair Requests</h1>
+    <h1 class="text-2xl font-bold mb-4">Reparatieverzoeken
+    </h1>
 
     @if (session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4">{{ session('success') }}</div>
@@ -19,13 +20,13 @@
 
             <select name="status"
                 class="w-1/4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">Filter by Status</option>
+                <option value="">Filter op Status</option>
                 <option value="in behandeling" {{ request('status') == 'in behandeling' ? 'selected' : '' }}>In
                     Behandeling</option>
                 <option value="voltooid" {{ request('status') == 'voltooid' ? 'selected' : '' }}>Voltooid</option>
             </select>
 
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Search</button>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Zoeken</button>
             <a href="{{ route('admin.repairRequests') }}"
                 class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Reset</a>
         </div>
@@ -67,13 +68,13 @@
                                 onsubmit="return confirm('Are you sure you want to delete this repair request?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="ml-2 bg-red-500 text-white rounded px-3 py-1">Delete</button>
+                                <button type="submit" class="ml-2 bg-red-500 text-white rounded px-3 py-1">Verwijder</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center py-4">No repair requests found.</td>
+                        <td colspan="5" class="text-center py-4">Geen reparatieverzoeken gevonden.</td>
                     </tr>
                 @endforelse
             </tbody>
