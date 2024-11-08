@@ -15,7 +15,7 @@ class DeviceModel extends Model
 
     public function deviceType()
     {
-        return $this->belongsTo(DeviceType::class);
+        return $this->belongsTo(DeviceType::class, 'type_id');
     }
 
     public function repairRequests()

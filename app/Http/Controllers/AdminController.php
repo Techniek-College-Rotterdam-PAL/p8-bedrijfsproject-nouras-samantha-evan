@@ -31,7 +31,7 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-            
+
         return view('admin.dashboard', compact(
             'repairRequestsCount',
             'usersCount',
@@ -89,6 +89,30 @@ class AdminController extends Controller
         $repairRequest->delete();
 
         return redirect()->route('admin.repairRequests')->with('success', 'Repair request deleted successfully.');
+    }
+
+    public function repairRequests(Request $request)
+    {
+        $query = RepairRequest::query();
+
+        // Filter by name if provided
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        // Filter by ID if provided
+        if ($request->filled('id')) {
+            $query->where('id', $request->id);
+        }
+
+        // Filter by status if provided
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $repairRequests = $query->with('deviceModel')->get();
+
+        return view('admin.repair_requests', compact('repairRequests'));
     }
 
     // --------------------------- User Management Methods ---------------------------
@@ -154,7 +178,7 @@ class AdminController extends Controller
     public function viewDeviceModels()
     {
         // Fetch all device models along with their device types for listing
-        $deviceModels = DeviceModel::with(  'deviceType')->get();
+        $deviceModels = DeviceModel::with('deviceType')->get();
 
         // Fetch all device types for the dropdown in the create form
         $deviceTypes = DeviceType::all();
