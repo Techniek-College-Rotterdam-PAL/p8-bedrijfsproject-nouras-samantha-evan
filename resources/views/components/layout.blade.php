@@ -30,12 +30,6 @@
                             ons</a>
                     </li>
                     <li class="text-gray-300 hover:text-white">
-                        <a href="{{ url('service') }}"
-                            class="py-2 px-4 hover:bg-gray-700 rounded transition">Service</a>
-                    </li>
-
-                    </li>
-                    <li class="text-gray-300 hover:text-white">
                         <a href="{{ url('faq') }}" class="py-2 px-4 hover:bg-gray-700 rounded transition">Faq</a>
                     </li>
 
