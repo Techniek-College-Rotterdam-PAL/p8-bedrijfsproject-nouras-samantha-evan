@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Appointment extends Model
+class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'date', 'time'];
+    protected $fillable = ['user_id', 'content', 'rating'];
 
-    // Relationship to link appointments to a user
     public function user()
     {
         return $this->belongsTo(User::class);
