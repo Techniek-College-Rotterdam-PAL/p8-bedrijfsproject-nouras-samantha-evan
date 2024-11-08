@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RepairRequestController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ReviewController;
 
 
@@ -84,6 +85,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/admin/repair-requests', [AdminController::class, 'repairRequests'])->name('admin.repairRequests');
 });
 
+// appointment routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::post('/appointments/check', [AppointmentController::class, 'checkAvailability'])->name('appointments.check');
+    Route::post('/appointments/book', [AppointmentController::class, 'book'])->name('appointments.book');
+});
+
+// Admin routes
+// Route::middleware(['auth','admin'])->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+//     Route::get('/repairRequests', [AdminController::class, 'viewRepairRequests'])->name('admin.repairRequests');
+//     Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.manageUsers');
+//     Route::post('/repair-requests/{id}/update', [AdminController::class, 'updateRepairRequestStatus'])->name('admin.updateRequestStatus');
+// });
 
 // Repair Request routes
 // 1. Route to show the repair request form

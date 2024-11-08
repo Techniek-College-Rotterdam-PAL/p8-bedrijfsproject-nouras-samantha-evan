@@ -47,14 +47,31 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_number' => ['nullable', 'string', 'max:15'],
-        ]);
-    }
+{
+    return Validator::make($data, [
+        'name' => ['required', 'string', 'max:255'],
+        
+        'email' => [
+            'required','string','max:255','unique:users',
+            'email:rfc,dns', // Uses DNS check to verify the domain exists
+            function ($attribute, $value, $fail) {
+                // Custom rule: checks for disposable or temporary email domains
+                $disposableDomains = ['tempmail.com', '10minutemail.com', 'mailinator.com'];
+                $emailDomain = substr(strrchr($value, "@"), 1);
+
+                if (in_array($emailDomain, $disposableDomains)) {
+                    $fail('The ' . $attribute . ' domain is not allowed.');
+                }
+            }
+        ],
+        
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+        
+        // Optional phone number with custom regex pattern for phone validation
+        'phone_number' => ['nullable', 'string', 'max:15', 'regex:/^\+?[0-9\s\-\(\)]*$/'],
+    ]);
+}
+
 
     /**
      * Create a new user instance after a valid registration.
