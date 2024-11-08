@@ -40,3 +40,5 @@ class ReviewController extends Controller
         return redirect()->back()->with('error', 'Je mag deze review niet verwijderen.');
     }
 }
+
+
